@@ -1,7 +1,7 @@
 package WS;
-
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ReadS {
@@ -29,7 +29,6 @@ public class ReadS {
                             stop = true;
                             break;
                     }
-
                 }catch (IOException e){
                     e.printStackTrace();
                 }
@@ -38,25 +37,25 @@ public class ReadS {
     public void filling(int numChar){
         sb = new StringBuilder();
         for(int i=0;i<numChar;i++){
-            sb.append("\0");
+            sb.append('\0');
         }
-
     }
 
     public void write(RandomAccessFile raf) throws IOException{
         String text;
         System.out.print("Inserisce un testo");
-        text = new Scanner(System.in).next();
+        text = new Scanner(System.in).nextLine();
+        System.out.print(text);
         //raf.seek(raf.length());
         raf.writeChars(text+sb.substring(0,sb.length()-text.length()));
     }
 
     public void read(RandomAccessFile raf) throws IOException {
-        String text;
-        while ((text = raf.readLine()) != null) {
-            System.out.println(text + "\n");
-            System.out.print(text.length());
+        StringBuilder text = new StringBuilder();
+        while (raf.getFilePointer()<raf.length()){
+            text.append(raf.readChar());
         }
+        System.out.printf("TEXT: "+text+ " Lenght: "+text.length());
     }
     public static void main(String[] args){
         ReadS readS = new ReadS(50,"/Users/christianbrito/Documents/Eli/eli/src/main/java/WS/readString.csv");
