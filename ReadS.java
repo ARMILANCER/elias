@@ -11,7 +11,6 @@ public class ReadS {
         this.path = path;
         filling(numChar);
     }
-
     public void gestionFile(){
         int choice;
         boolean stop = false;
@@ -35,9 +34,7 @@ public class ReadS {
                     e.printStackTrace();
                 }
             }
-
     }
-
     public void filling(int numChar){
         sb = new StringBuilder();
         for(int i=0;i<numChar;i++){
@@ -51,14 +48,13 @@ public class ReadS {
         System.out.print("Inserisce un testo");
         text = new Scanner(System.in).next();
         //raf.seek(raf.length());
-        //raf.writeChars(text);
-        raf.writeChars(String.valueOf(sb.substring(sb.length()-text.length()).length()));
+        raf.writeChars(text+sb.substring(0,sb.length()-text.length()));
     }
 
-    public void read(RandomAccessFile raf) throws IOException{
+    public void read(RandomAccessFile raf) throws IOException {
         String text;
         while ((text = raf.readLine()) != null) {
-            System.out.println(text+"\n");
+            System.out.println(text + "\n");
             System.out.print(text.length());
         }
     }
