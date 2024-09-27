@@ -1,4 +1,6 @@
 package WS;
+import javafx.fxml.Initializable;
+
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Objects;
@@ -16,18 +18,22 @@ public class ReadS {
         boolean stop = false;
             while(!stop){
                 choice = new Scanner(System.in).nextInt();
-                try(RandomAccessFile raf = new RandomAccessFile(path,"rw")) {
+                try(RandomAccessFile raf = new RandomAccessFile(path, "rw")) {
                     switch (choice) {
                         case 1:
+                           // raf = new RandomAccessFile(path,"r");
                             read(raf);
                             break;
                         case 2:
+                          //  raf = new RandomAccessFile(path,"rw");
                             write(raf);
                             break;
                         case 3:
                             System.out.print("exit");
                             stop = true;
                             break;
+                        default:
+                            System.out.println("No");
                     }
                 }catch (IOException e){
                     e.printStackTrace();
@@ -46,7 +52,7 @@ public class ReadS {
         System.out.print("Inserisce un testo");
         text = new Scanner(System.in).nextLine();
         System.out.print(text);
-        //raf.seek(raf.length());
+        raf.seek(raf.length());
         raf.writeChars(text+sb.substring(0,sb.length()-text.length()));
     }
 
